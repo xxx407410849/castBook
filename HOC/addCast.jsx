@@ -27,10 +27,11 @@ class AddCast extends React.Component{
 
         this.props.addCast(array);
     }
-    iconClickHandle(idx){
+    iconClickHandle(name,type){
+        console.log(name,type)
         this.setState({
-            type : this.state.dataList.getIn([idx,'type']),
-            name : this.state.dataList.getIn([idx,'name'])
+            type : type,
+            name : name
         })
     }
     areaChangeHandle(e){
@@ -50,7 +51,7 @@ class AddCast extends React.Component{
                     {
                         this.state.dataList.map((item,idx)=>{
                             return (
-                            <Complexiconcomponent name = {item.get('name')} type = {item.get('type')} Click = {(e)=>{this.iconClickHandle(e)}}/>
+                            <Complexiconcomponent name = {item.get('name')} type = {item.get('type')} Click = {(name,type)=>{this.iconClickHandle(name,type)}} key = {item.get('type')}/>
                             )
                         })
                     }

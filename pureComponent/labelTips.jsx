@@ -5,6 +5,7 @@ import React from 'react'
 @value : value,
 @time : time
 @clickEvent : Click
+@id : id
 */
 class Labeltipscomponent extends React.PureComponent{
     constructor(props){
@@ -14,12 +15,13 @@ class Labeltipscomponent extends React.PureComponent{
             name : this.props.name,
             value : this.props.value,
             time : this.props.time,
+            id : this.props.id
         }
     }
 
     render(){
         return (
-            <div className = "labelTips-ctn" onClick = {(e)=>{this.props.Click(e)}}>
+            <div className = "labelTips-ctn" onClick = {(id)=>{this.props.Click(id)}}>
                 <span className = "labelTips-type"><i className = {"icon-" + this.state.type}></i>{this.state.name}</span>
                 <span className = "labelTips-time">{this.state.time}</span>
                 <span classNmae = "lableTips-value">{this.state.value}</span>
