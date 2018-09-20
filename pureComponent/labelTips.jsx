@@ -1,28 +1,27 @@
 import React from 'react'
+import moment from 'moment'
+import '../Less/labelTips.less'
 /*
 @Signtype : type,
 @Nametype : name,
 @value : value,
 @time : time
 @clickEvent : Click
+@id : id
+@color : color
 */
 class Labeltipscomponent extends React.PureComponent{
     constructor(props){
         super(props);
-        this.state = {
-            type : this.props.type,
-            name : this.props.name,
-            value : this.props.value,
-            time : this.props.time,
-        }
     }
 
     render(){
+        console.log(this.props.color);
         return (
-            <div className = "labelTips-ctn" onClick = {(e)=>{this.props.Click(e)}}>
-                <span className = "labelTips-type"><i className = {"icon-" + this.state.type}></i>{this.state.name}</span>
-                <span className = "labelTips-time">{this.state.time}</span>
-                <span classNmae = "lableTips-value">{this.state.value}</span>
+            <div className = "labelTips-ctn" onClick = {(id)=>{this.props.Click(id)}} style = {{borderColor : this.props.color}}>
+                <span className = "labelTips-type" style = {{color : this.props.color}}><i className = {"icon-" + this.props.type}></i>{this.props.name}</span>
+                <div className = "labelTips-time">{moment(this.props.time,'YY-MM-DD h:mm:ss').format("YY-MM-DD HH:mm")}</div>
+                <span className = "lableTips-value">{"支出: "+this.props.value}</span>
             </div>
         )
     }
