@@ -7,10 +7,10 @@ import store from './Store/castStore.jsx';
 import Immutable from 'immutable';
 import {combineReducers} from 'redux-immutable';
 
+
 const unsubscribe = store.subscribe(()=>{
     console.log(store.getState())
 })
-unsubscribe();
 
 const MyLoadingComponent = ( {isLoding,error} )=>{
     if(isLoding){
@@ -20,14 +20,29 @@ const MyLoadingComponent = ( {isLoding,error} )=>{
     }else return null;
 }
 
-const Pie = Loadable({
-    loader: () => import('./pureComponent/pieChart.jsx'),
+const ACcast = Loadable({
+    loader: () => import("./MapRedux/mapAddCast.jsx"),
     loading: MyLoadingComponent
-});
+})
 
+const IndexShowCast = Loadable({
+    loader: () => import("./MapRedux/mapShowCast.jsx"),
+    loading : MyLoadingComponent
+})
+
+class IndexComponent extends React.Component{
+    render(){
+        return (
+            <div>
+                <ACcast />
+                <IndexShowCast />
+            </div>
+        )
+    }
+}
 ReactDom.render(
-    <div>
-        <Pie width = {300} height = {300} dataList = {[["xx",2],["yy",3],["zz",4],["dd",5]]} />
-    </div>,
+    <Provider store = {store}>
+        <IndexComponent />
+    </Provider>,
     document.getElementById('root')
 )
