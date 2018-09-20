@@ -5,7 +5,9 @@ import {
 } from '../Action/caseAction.jsx'
 import Immutable from 'immutable'
 import {combineReducers} from 'redux-immutable'
-
+const types = (state = Immutable.fromJS([]) , action) => {
+    return state;
+}
 const Casts = (state = Immutable.fromJS([]) , action) => {
     switch(action.type){
         case DELETE_CAST : {
@@ -37,6 +39,7 @@ const Casts = (state = Immutable.fromJS([]) , action) => {
 
 const App = combineReducers({
     Casts,
+    types
 })
 
 module.exports = App

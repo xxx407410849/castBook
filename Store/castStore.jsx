@@ -17,6 +17,5 @@ let initTypeData = Immutable.fromJS([
     {name : "日用品", type : "daybuy"}
 ]);
 let store = createStore(App,Immutable.fromJS({types : initTypeData}));
-console.log(store.getState());
 
 module.exports = store
