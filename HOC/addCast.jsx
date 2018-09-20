@@ -7,11 +7,11 @@ class AddCast extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            dataList : this.props.dataList,
             value : 0,
             type : "other",
             name : "其他",
-            tips : ""
+            tips : "",
+            color : "#1f77b4"
         }
     }
     addClickHandle(e){
@@ -19,19 +19,22 @@ class AddCast extends React.Component{
 
         let array = Immutable.fromJS({
             tip : this.state.tips,
-            value : this.state.value,
+            value : Number(this.state.value),
             type : this.state.type,
             name : this.state.name,
-            time : moment().format('YY-MM-DD h:mm:ss')
+            time : moment().format('YY-MM-DD h:mm'),
+            color : this.state.color
         });
 
         this.props.addCast(array);
+        this.props.addTypeValue(this.state.type,Number(this.state.value));
     }
-    iconClickHandle(name,type){
-        console.log(name,type)
+    iconClickHandle(name,type,color){
+        console.log(name,type,color)
         this.setState({
             type : type,
-            name : name
+            name : name,
+            color : color
         })
     }
     areaChangeHandle(e){
@@ -49,9 +52,9 @@ class AddCast extends React.Component{
             <div className = "AddCast-ctn">
                 <div className = "panel-chooseType">
                     {
-                        this.state.dataList.map((item,idx)=>{
+                        this.props.dataList.map((item,idx)=>{
                             return (
-                            <Complexiconcomponent name = {item.get('name')} type = {item.get('type')} Click = {(name,type)=>{this.iconClickHandle(name,type)}} key = {item.get('type')}/>
+                            <Complexiconcomponent name = {item.get('name')} type = {item.get('type')} Click = {(name,type,color)=>{this.iconClickHandle(name,type,color)}} key = {item.get('type')} color = {item.get('color')}/>
                             )
                         })
                     }
