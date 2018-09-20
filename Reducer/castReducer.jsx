@@ -3,10 +3,42 @@ import {
     CHANGE_CAST,
     ADD_CAST
 } from '../Action/caseAction.jsx'
+import {
+    DELETE_TYPE,
+    ADD_TYPE_VALUE,
+    ADD_TYPE,
+    SUB_TYPE_VALUE
+} from '../Action/typeAction.jsx'
 import Immutable from 'immutable'
 import {combineReducers} from 'redux-immutable'
 const types = (state = Immutable.fromJS([]) , action) => {
-    return state;
+    switch(action.type){
+        case DELETE_TYPE : {
+            let index;
+            state.map((item,idx)=>{
+                if(item.get('type') === action.typeName) index = idx;
+            })
+            return state.remove(index);
+        }
+        case ADD_TYPE_VALUE : {
+            let index;
+            state.map((item,idx)=>{
+                if(item.get('type') === action.typeName) index = idx;
+            })
+            return state.setIn([index,'value'],action.value + state.getIn([index,'value']))
+        }
+        case SUB_TYPE_VALUE : {
+            let index;
+            state.map((item,idx)=>{
+                if(item.get('type') === action.typeName) index= idx;
+            })
+            return state.setIn([index,'value'], state.getIn([index,'value']) - action.value)
+        }
+        case ADD_TYPE : {
+            return state.push(action.item);
+        }
+        default : return state
+    }
 }
 const Casts = (state = Immutable.fromJS([]) , action) => {
     switch(action.type){
