@@ -121,8 +121,8 @@ class Piechartcomponent extends React.PureComponent{
 
         arcs.append("text")
         .attr("transform",function(d){
-            let x = arc2.centroid(d)[0] * 1.55;
-            let y = arc2.centroid(d)[1] * 1.55;
+            let x = arc2.centroid(d)[0] * 1.58;
+            let y = arc2.centroid(d)[1] * 1.58;
             return "translate(" + x + "," + y + ")";
         })
         .attr("text-anchor","middle")

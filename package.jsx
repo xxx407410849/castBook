@@ -4,6 +4,8 @@ import {Router,BrowserRouter,Link,Switch} from 'react-router-dom';
 import Loadable from 'react-loadable';
 import {Provider} from 'react-redux'
 import store from './Store/castStore.jsx';
+import './Less/index.less';
+import './Font/iconfont.css';
 import Immutable from 'immutable';
 import {combineReducers} from 'redux-immutable';
 

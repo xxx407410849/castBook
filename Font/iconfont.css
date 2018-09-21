@@ -1,0 +1,68 @@
+
+@font-face {font-family: "iconfont";
+  src: url(./iconfont.eot); /* IE9*/
+  src: url(./iconfont.eot#iefix) format('embedded-opentype'), /* IE6-IE8 */
+  url(./iconfont.woff) format('woff'),
+  url(./iconfont.ttf) format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url(./iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-daybuy:before { content: "\e636"; }
+
+.icon-clothes:before { content: "\e6a1"; }
+
+.icon-study-click:before { content: "\e629"; }
+
+.icon-live-click:before { content: "\e60b"; }
+
+.icon-somoke:before { content: "\e505"; }
+
+.icon-medic:before { content: "\e60a"; }
+
+.icon-trip:before { content: "\e669"; }
+
+.icon-trip-click:before { content: "\e66a"; }
+
+.icon-play-click:before { content: "\e660"; }
+
+.icon-live:before { content: "\e626"; }
+
+.icon-extrafood:before { content: "\e71f"; }
+
+.icon-other:before { content: "\e509"; }
+
+.icon-medic-click:before { content: "\e50d"; }
+
+.icon-clothes-click:before { content: "\e51c"; }
+
+.icon-somoke-click:before { content: "\e68a"; }
+
+.icon-fruit-click:before { content: "\e60c"; }
+
+.icon-fruit:before { content: "\e501"; }
+
+.icon-play:before { content: "\e649"; }
+
+.icon-study:before { content: "\e506"; }
+
+.icon-extrafood-click:before { content: "\e63b"; }
+
+.icon-buy-click:before { content: "\e610"; }
+
+.icon-other-click:before { content: "\e658"; }
+
+.icon-food:before { content: "\e98f"; }
+
+.icon-food-click:before { content: "\e7cc"; }
+
+.icon-buy:before { content: "\e503"; }
+
+.icon-daybuy-click:before { content: "\e680"; }
+
