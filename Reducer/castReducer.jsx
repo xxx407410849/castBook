@@ -1,13 +1,14 @@
 import {
     DELETE_CAST,
     CHANGE_CAST,
-    ADD_CAST
+    ADD_CAST,
+    SET_CASE_TYPE
 } from '../Action/caseAction.jsx'
 import {
     DELETE_TYPE,
     ADD_TYPE_VALUE,
     ADD_TYPE,
-    SUB_TYPE_VALUE
+    SUB_TYPE_VALUE,
 } from '../Action/typeAction.jsx'
 import Immutable from 'immutable'
 import {combineReducers} from 'redux-immutable'
@@ -36,6 +37,12 @@ const types = (state = Immutable.fromJS([]) , action) => {
         }
         case ADD_TYPE : {
             return state.push(action.item);
+        }
+        case SET_CASE_TYPE : {
+            return state.map((item)=>{
+                if(item.get('type') === action.typeName) return item.set('checkClick',true);
+                else return item.set('checkClick',false);
+            })
         }
         default : return state
     }

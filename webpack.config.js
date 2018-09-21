@@ -8,6 +8,10 @@ const extractLess = new ExtractTextPlugin({
     filename: "stylesheets/[name].css",
     ignoreOrder : true
 });
+const extractCss = new ExtractTextPlugin({
+    filename: "stylesheets/[name]-css.css",
+    ignoreOrder : true
+})
 module.exports = {
     mode: "development",
     entry: path.resolve(__dirname, './package.jsx'),
@@ -35,7 +39,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(css|less)$/,
+                test: /\.less$/,
                 use: extractLess.extract({
                     fallback : 'style-loader',
                     use: [
@@ -47,16 +51,25 @@ module.exports = {
                 })
             },
             {
+                test: /\.css$/,
+                use: extractCss.extract({
+                    fallback : 'style-loader',
+                    use: [
+                        {loader : 'css-loader' , options : { importLoaders: 1 , autoprefixer : false}},
+                        {loader: 'postcss-loader'},
+                    ]
+                })
+            },
+            {
                 test: /\.ejs$/,
                 loader: 'ejs-loader'
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 8192,
-                        name: 'font/[name].[ext]'
+                        name: 'fonts/[name].[md5:hash:hex:7].[ext]'
                     }
                 }]
             },
@@ -77,6 +90,7 @@ module.exports = {
     },
     plugins: [
         extractLess,
+        extractCss,
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'view/index.html',

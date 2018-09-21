@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Less/btn.less'
 /*
 @btnEvent: Click
 @btnModel: Model

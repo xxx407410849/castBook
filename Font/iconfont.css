@@ -1,0 +1,35 @@
+
+@font-face {font-family: "iconfont";
+  src: url(./iconfont.eot); /* IE9*/
+  src: url(./iconfont.eot#iefix) format('embedded-opentype'), /* IE6-IE8 */
+  url(./iconfont.woff) format('woff'),
+  url(./iconfont.ttf) format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url(./iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+}
+
+.icon-daybuy:before { content: "\e636"; }
+
+.icon-clothes:before { content: "\e639"; }
+
+.icon-somoke:before { content: "\e505"; }
+
+.icon-medic:before { content: "\e60a"; }
+
+.icon-trip:before { content: "\e669"; }
+
+.icon-live:before { content: "\e626"; }
+
+.icon-extrafood:before { content: "\e71f"; }
+
+.icon-other:before { content: "\e509"; }
+
+.icon-fruit:before { content: "\e501"; }
+
+.icon-play:before { content: "\e649"; }
+
+.icon-study:before { content: "\e506"; }
+
+.icon-food:before { content: "\e98f"; }
+
+.icon-buy:before { content: "\e503"; }
+
