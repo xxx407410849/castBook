@@ -1,10 +1,11 @@
 import React from 'react'
 import Labeltipscomponent from '../pureComponent/labelTips.jsx'
 import Piechartcomponent from '../pureComponent/pieChart.jsx'
-
+import {Link} from 'react-router-dom'
 class ShowCast extends React.Component{
     constructor(props){
         super(props);
+        console.log(props);
         this.state = {
             pieData : [
 
@@ -16,15 +17,16 @@ class ShowCast extends React.Component{
             if(item.get('id') == id)return item
         });
     }
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            pieData : nextProps.pieData
-        })
-    }
     render(){
         return (
             <div>
-                <Piechartcomponent width = {300} height = {300} dataList = {this.state.pieData} />
+                <div className = "pie-ctn">
+                    <Piechartcomponent width = {300} height = {300} dataList = {this.props.pieData} />                    
+                </div>
+                <hr/>
+                <div className = 'castAdd-link-ctn'>
+                    <Link to = '/addCast' className = "castAdd-link">记一笔</Link>
+                </div>
                 {
                     this.props.dataList.map((item)=>{
                         return <Labeltipscomponent 

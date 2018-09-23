@@ -37,6 +37,7 @@ class AddCast extends React.Component{
             });
             this.props.addCast(array);
             this.props.addTypeValue(this.state.type,Number(this.state.value));
+            this.props.history.push("/");
         }
     }
     iconClickHandle(name,type,color){
@@ -91,7 +92,7 @@ class AddCast extends React.Component{
                 <div className = "panel-setValue">
                     <span className = {this.state.panelTipsCheck ? "panel-value-label panel-value-label-error" : "panel-value-label"}  >{this.state.panelTipsValue}</span>
                     <input type="text" className = "ipt-values" onChange = {(e)=>{this.iptChangeHandle(e)}} value = {this.state.value} onBlur = {(e)=>{this.iptOnBlurHandle(e)}}/>
-                    <Btncomponent Model = "span" name = "提交" Click = {(name,type)=>{this.addClickHandle(name,type)}}/>
+                    <Btncomponent Model = "span" name = "确定" Click = {(name,type)=>{this.addClickHandle(name,type)}}/>
                 </div>
             </div>
         )

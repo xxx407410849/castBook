@@ -1,8 +1,9 @@
 import React from 'react'
 import d3 from 'd3'
+import '../Less/pieChart.less'
 /* 
 @width : width,
-@data : dataList ([[name,value],[]...])
+@data : dataList ([[name,value,color],[]...])
 @height : height
 */
 class Piechartcomponent extends React.PureComponent{
@@ -11,21 +12,30 @@ class Piechartcomponent extends React.PureComponent{
         this.state = {
             width : 0,
             height : 0,
-            dataList : []
+            dataList : [],
+            total : 0
         }
     }
     componentDidMount(){
+        if(this.props.dataList.length < 1){
+            this.props.dataList.push(["记一笔吧",1,"grey"]);
+        }else{
+            let total = 0;
+            this.props.dataList.forEach((item)=>{
+                total = total + item[1];
+            });
+            this.setState({
+                total : total
+            })
+        }
         d3.select(".pie").append("svg");
-    }
-    componentWillReceiveProps(nextProps){
-        console.log(nextProps);
         d3.select(".pie").selectAll("g").remove();
         let svg = d3.select(".pie").select("svg")
-        .attr("width",nextProps.width)
-        .attr("height",nextProps.height)
+        .attr("width",this.props.width)
+        .attr("height",this.props.height)
         .append("g")
-        .attr('transform',"translate("+nextProps.width/2+","+nextProps.height/2+")");
-        let outerR = Math.min(nextProps.width,nextProps.height) / 2 * 0.7;
+        .attr('transform',"translate("+this.props.width/2+","+(this.props.height/2)+")");
+        let outerR = Math.min(this.props.width,this.props.height) / 2 * 0.7;
         //路径
         let arc = d3.svg.arc()
         .outerRadius(outerR);
@@ -47,7 +57,7 @@ class Piechartcomponent extends React.PureComponent{
         }
 
         let arcs = svg.selectAll("g")
-        .data(pie(nextProps.dataList))
+        .data(pie(this.props.dataList))
         .enter()
         .append("g")
         .attr("class","arc");
@@ -85,7 +95,7 @@ class Piechartcomponent extends React.PureComponent{
         .attr("text-anchor","middle")
         .attr("font-size","13px")
         .text((d)=>{
-            let precent = Number(d.value)/d3.sum(nextProps.dataList,(d)=>{
+            let precent = Number(d.value)/d3.sum(this.props.dataList,(d)=>{
                 return d[1];
             }) * 100;
             return precent.toFixed(1) + "%";
@@ -144,9 +154,14 @@ class Piechartcomponent extends React.PureComponent{
             "opacity" : 1
         });
     }
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps);
+    }
     render(){
         return (
-            <div className = "pie" style = {{width : this.props.width + "px", height : this.props.height + "px"}}></div>
+            <div className = "pie" style = {{width : this.props.width + "px", height : this.props.height + "px"}}>
+                <div className = "pie-sumValue"><span>总使用金额:</span><span>{this.state.total + "$"}</span></div>
+            </div>
         )
     }
 }
